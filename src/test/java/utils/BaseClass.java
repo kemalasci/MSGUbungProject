@@ -65,22 +65,8 @@ public class BaseClass {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
     }
 
-    public void waitUntilVisible(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-    public void hower(By locator) {
-        Actions action = new Actions(driver);
-        WebElement we = driver.findElement(locator);
-        action.moveToElement(we).build().perform();
-    }
 
 
-    public void sendKeysTo(WebElement element, String text) {
-        waitUntilVisible(element);
-        element.sendKeys(text);
-
-    }
 
     public void clickTo(By locator) {
 
@@ -88,30 +74,8 @@ public class BaseClass {
 
     }
 
-    public void clickUndsendKeysTo(By locator, String text) {
 
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
-    }
-
-    public void clickTo(WebElement element) {
-
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
-    }
-
-    public void waitForVisibilityOf(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    public void waitForClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
-
-    /**
-     * @param locator
-     * @return
-     */
     public List<WebElement> getListOf(By locator) {
         return driver.findElements(locator);
     }
@@ -129,7 +93,7 @@ public class BaseClass {
 
 
 
-    public void senkeyByAction(By locator, String text) {
+    public void sendkeyByAction(By locator, String text) {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         new Actions(driver).moveToElement(element).sendKeys(text).build().perform();
     }
@@ -147,11 +111,7 @@ public class BaseClass {
         }
     }
 
-    public void switcToWindow() {
-        for (String winHandle : driver.getWindowHandles()) {
-            driver.switchTo().window(winHandle);
-        }
-    }
+
 
     public void verifyElementContainsText(By locator, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -201,11 +161,11 @@ public class BaseClass {
     }
 
 
-    public static String randomString(int len){
+    public static String randomString(int leng){
        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
-        StringBuilder sb = new StringBuilder(len);
-        for(int i = 0; i < len; i++)
+        StringBuilder sb = new StringBuilder(leng);
+        for(int i = 0; i < leng; i++)
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         return sb.toString();
     }

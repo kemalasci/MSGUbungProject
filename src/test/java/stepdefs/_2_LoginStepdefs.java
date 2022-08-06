@@ -25,7 +25,7 @@ public class _2_LoginStepdefs extends BaseClass implements LocatorsInterface {
     public void enterUsernameAndPasswordAndClickLoginButton() throws InterruptedException {
         clickTo(menuUserItem);
         Thread.sleep(3000);
-        senkeyByAction(inputUserName, inputUserNameString);
+
         sendKeysTo(inputUserName, inputUserNameString);
 
     }
