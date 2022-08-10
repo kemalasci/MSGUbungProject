@@ -61,7 +61,7 @@ public class BaseClass {
     }
 
     public void sendKeysTo(By locator, String text) {
-
+wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
     }
 
@@ -142,7 +142,7 @@ public class BaseClass {
         String strtotalPriceCheck = driver.findElement(locator4).getText().replaceAll("[^\\d]", "");
         int totalPriceCheck = Integer.parseInt(strtotalPriceCheck);
 
-        Assert.assertTrue(totalPrice==totalPriceCheck);
+        Assert.assertEquals(totalPrice,totalPriceCheck);
 
     }
 

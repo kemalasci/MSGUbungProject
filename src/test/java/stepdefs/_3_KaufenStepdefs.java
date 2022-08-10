@@ -46,10 +46,10 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
     public void fillInPaymentMethodAndPurchaseIsComplete() throws InterruptedException, AWTException {
         clickTo(nextButton);
         clickTo(safepayInput);
-        RobotClass(15);
+      //  RobotClass(15);
         sendKeysTo(safepayInput, safePayUserName);
         clickTo(safepayPasswortInput);
-        RobotClass(12);
+        //RobotClass(12);
         sendKeysTo(safepayPasswortInput, safePayPassword);
         clickTo(buttonPayNow);
     }
