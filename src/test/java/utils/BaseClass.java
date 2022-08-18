@@ -125,11 +125,11 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
 
         String strRedProduktPrice = driver.findElement(locator1).getText().replaceAll("[^\\d]", "");
         int redProduktPrice1 = Integer.parseInt(strRedProduktPrice);
-        System.out.println("produktPrice= "+ redProduktPrice1);
+        System.out.println("produktPriceRed= "+ redProduktPrice1);
 
         String strBlauProduktPrice2 = driver.findElement(locator2).getText().replaceAll("[^\\d]", "");
         int blauProduktPrice2 = Integer.parseInt(strBlauProduktPrice2);
-        System.out.println("produktPrice= "+ blauProduktPrice2);
+        System.out.println("produktPriceBlau= "+ blauProduktPrice2);
         sleep(3);
 
         String strShipping = driver.findElement(locator3).getText().replaceAll("[^\\d]", "");
