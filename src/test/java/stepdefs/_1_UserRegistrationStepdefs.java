@@ -12,6 +12,7 @@ import static pages.InformationClass.*;
 import java.util.Map;
 
 public class _1_UserRegistrationStepdefs extends BaseClass implements LocatorsInterface {
+    String registerStr="";
     @When("navigate to Registration page")
     public void navigateToRegistrationPage() throws InterruptedException {
         clickTo(menuUserItem);
@@ -22,7 +23,7 @@ public class _1_UserRegistrationStepdefs extends BaseClass implements LocatorsIn
     @Then("Create a new account")
     public void createANewAccount(DataTable table) throws InterruptedException {
         Map<String, String> map = table.asMap(String.class, String.class);
-        sendKeysTo(registUserNameInput, randomString(6));
+        sendKeysTo(registUserNameInput,registerStr= randomString(6));
         sendKeysTo(registEmailInput, map.get("email"));
         sendKeysTo(registPasswordInput, map.get("password"));
         sendKeysTo(registPasswordInputConfirm, map.get("confirmPassword"));
@@ -43,12 +44,14 @@ public class _1_UserRegistrationStepdefs extends BaseClass implements LocatorsIn
     @And("tick  to Confim box and click to registiration")
     public void tickToConfimBoxAndClickToRegistiration() {
         clickTo(agreeBox);
-        clickTo(registerButton);
-        System.out.println(randomString(6));
+       clickTo(registerButton);
+
     }
 
     @Then("Registration Success message should be displayed")
     public void registrationSuccessMessageShouldBeDisplayed() {
         assertActualURL();
+        verifyElementContainsText(userNameTitle,registerStr);
+        System.out.println(registerStr);
     }
 }
