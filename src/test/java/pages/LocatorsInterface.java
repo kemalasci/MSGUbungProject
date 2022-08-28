@@ -21,6 +21,8 @@ public interface LocatorsInterface {
     By plusButton = By.cssSelector("div.plus");
     By shoppingCartItem = By.id("shoppingCartLink");
 
+
+
     By checkOutButton = By.cssSelector("button.roboto-medium.tami.uft-class.ng-binding");
     By redProduktPrice1 = By.xpath("(//p[@class='price roboto-regular ng-binding'])[1]");
     By blauProduktPrice2 = By.xpath("(//p[@class='price roboto-regular ng-binding'])[2]");

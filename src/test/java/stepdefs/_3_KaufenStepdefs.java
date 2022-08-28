@@ -18,9 +18,13 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
 
     @Then("one blue 3 red Laptop add to cart")
     public void oneBlueRedLaptopAddToCart() throws InterruptedException {
+      //  hoverToElement(shoppingCartItem);
         clickTo(addToCardButton);
-        Thread.sleep(1000);
+
+     Thread.sleep(1000);
+
         clickTo(redProdukt);
+
         for (int i = 0; i < 3; i++) {
             clickTo(plusButton);
         }
@@ -38,7 +42,7 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
 
     @Then("total product price and amount paid must be verified")
     public void totalProductPriceAndAmountPaidMustBeVerified() {
-        verifyProduktPrice(redProduktPrice1,blauProduktPrice2, shippingPrice, totalPrice);
+        verifyProduktPrice(redProduktPrice1, blauProduktPrice2, shippingPrice, totalPrice);
     }
 
 
@@ -46,7 +50,7 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
     public void fillInPaymentMethodAndPurchaseIsComplete() throws InterruptedException, AWTException {
         clickTo(nextButton);
         clickTo(safepayInput);
-      //  RobotClass(15);
+        //  RobotClass(15);
         sendKeysTo(safepayInput, safePayUserName);
         clickTo(safepayPasswortInput);
         //RobotClass(12);
@@ -56,6 +60,6 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
 
     @Then("Success message should be displayed")
     public void successMessageShouldBeDisplayed() {
-        verifyElementContainsText(successMsjContainer,successMessage);
+        verifyElementContainsText(successMsjContainer, successMessage);
     }
 }

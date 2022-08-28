@@ -1,36 +1,27 @@
 package utils;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.HttpClientBuilder;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.security.SecureRandom;
 import java.util.List;
-import java.util.Random;
+
+import static org.testng.Assert.*;
 
 public class BaseClass {
 
     protected WebDriver driver;
     private WebDriverWait wait;
     Robot robot;
-    public static String status = "passed";
+
 
     private void setUpDriver() {
         driver = Driver.getDriver();
@@ -52,12 +43,10 @@ public class BaseClass {
         driver.get(url);
     }
 
-    public void scrollToElement(WebElement element) {
-        Actions actions = new Actions(driver);
-        actions.moveToElement(element);
-        actions.perform();
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void hoverToElement(By locator) {
+        WebElement element = driver.findElement(locator);
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
     }
 
     public void sendKeysTo(By locator, String text) {
@@ -81,10 +70,7 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
     }
 
 
-    public int getRandom(int min, int max) {
 
-        return min + new Random().nextInt(max - min);
-    }
 
     public void select(By locator, String selectByText) {
         Select objSelect = new Select(driver.findElement(locator));
@@ -116,7 +102,8 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
     public void verifyElementContainsText(By locator, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         System.out.println(driver.findElement(locator).getText());
-        Assert.assertTrue(driver.findElement(locator).getText().toLowerCase().contains(text.toLowerCase()));
+     //   assertTrue(driver.findElement(locator).getText().toLowerCase().contains(text.toLowerCase()));
+        Assert.assertEquals(driver.findElement(locator).getText().toLowerCase(),text.toLowerCase());
     }
 
     public void verifyProduktPrice(By locator1, By locator2, By locator3, By locator4) {
@@ -142,7 +129,7 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         String strtotalPriceCheck = driver.findElement(locator4).getText().replaceAll("[^\\d]", "");
         int totalPriceCheck = Integer.parseInt(strtotalPriceCheck);
 
-        Assert.assertEquals(totalPrice,totalPriceCheck);
+        assertEquals(totalPrice,totalPriceCheck);
 
     }
 
@@ -170,7 +157,7 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         return sb.toString();
     }
     public void assertActualURL(){
-        Assert.assertTrue(driver.getCurrentUrl().toLowerCase().contains("http://www.advantageonlineshopping.com/#/"));
+        assertTrue(driver.getCurrentUrl().toLowerCase().contains("http://www.advantageonlineshopping.com/#/"));
     }
 
 }
