@@ -21,16 +21,6 @@ public class _2_LoginStepdefs extends BaseClass implements LocatorsInterface {
         verifyElementContainsText(advantageDemoTitle, advantageHomePageTitle);
 
     }
-    @When("Enter username and password and click Login button")
-    public void enterUsernameAndPasswordAndClickLoginButton() throws InterruptedException {
-        clickTo(menuUserItem);
-        Thread.sleep(3000);
-
-        sendKeysTo(inputUserName, inputUserNameString);
-
-    }
-
-
 
 
 
