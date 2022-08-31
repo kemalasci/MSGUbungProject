@@ -17,7 +17,7 @@ public interface LocatorsInterface {
     By seeOfferButton = By.cssSelector("button#see_offer_btn");
     By addToCardButton = By.cssSelector("button[name='save_to_cart']");
 
-    By redProdukt = By.xpath("(//span[@title='RED'])[2]");
+    By grayProdukt = By.xpath("(//span[@title='GRAY'])[2]");
     By plusButton = By.cssSelector("div.plus");
     By shoppingCartItem = By.id("shoppingCartLink");
 

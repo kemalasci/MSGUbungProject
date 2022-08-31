@@ -28,7 +28,7 @@ public class BaseClass {
         wait = new WebDriverWait(driver, 10);
 
 
-            driver.manage().window().maximize();
+        driver.manage().window().maximize();
 
 
     }
@@ -50,11 +50,9 @@ public class BaseClass {
     }
 
     public void sendKeysTo(By locator, String text) {
-wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).sendKeys(text);
     }
-
-
 
 
     public void clickTo(By locator) {
@@ -64,19 +62,15 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
     }
 
 
-
     public List<WebElement> getListOf(By locator) {
         return driver.findElements(locator);
     }
-
-
 
 
     public void select(By locator, String selectByText) {
         Select objSelect = new Select(driver.findElement(locator));
         objSelect.selectByValue(selectByText);
     }
-
 
 
     public void sendkeyByAction(By locator, String text) {
@@ -98,38 +92,43 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
     }
 
 
-
     public void verifyElementContainsText(By locator, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         System.out.println(driver.findElement(locator).getText());
-     //   assertTrue(driver.findElement(locator).getText().toLowerCase().contains(text.toLowerCase()));
-        Assert.assertEquals(driver.findElement(locator).getText().toLowerCase(),text.toLowerCase());
+        //   assertTrue(driver.findElement(locator).getText().toLowerCase().contains(text.toLowerCase()));
+        Assert.assertEquals(driver.findElement(locator).getText().toLowerCase(), text.toLowerCase());
     }
 
-    public void verifyProduktPrice(By locator1, By locator2, By locator3, By locator4) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator1));
+    public void verifyProduktPrice(By grayProdukt, By blauProdukt, By shipping, By totalPreis) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(grayProdukt));
 
 
-        String strRedProduktPrice = driver.findElement(locator1).getText().replaceAll("[^\\d]", "");
-        int redProduktPrice1 = Integer.parseInt(strRedProduktPrice);
-        System.out.println("produktPriceRed= "+ redProduktPrice1);
+        String strGrayProduktPrice = driver.findElement(grayProdukt).getText().substring(1).replace(",","");
+        System.out.println("grayProduktPrice= " + strGrayProduktPrice);
+        double grayProduktPrice = Double.parseDouble(strGrayProduktPrice);
 
-        String strBlauProduktPrice2 = driver.findElement(locator2).getText().replaceAll("[^\\d]", "");
-        int blauProduktPrice2 = Integer.parseInt(strBlauProduktPrice2);
-        System.out.println("produktPriceBlau= "+ blauProduktPrice2);
+
+
+        String strBlauProduktPrice = driver.findElement(blauProdukt).getText().substring(1).replace(",","");
+        System.out.println("blauProduktPrice = " +strBlauProduktPrice);
+        double blauProduktPrice = Double.parseDouble(strBlauProduktPrice);
         sleep(3);
 
-        String strShipping = driver.findElement(locator3).getText().replaceAll("[^\\d]", "");
-        int shipping = Integer.parseInt(strShipping);
-        System.out.println("shipping= "+ shipping);
 
-        int totalPrice=shipping+redProduktPrice1+blauProduktPrice2;
-        System.out.println("totalPrice= " +totalPrice);
+        String strShipping = driver.findElement(shipping).getText().substring(1).replace(",","");
+        System.out.println("shipping= " +strShipping);
+        double Shipping = Double.parseDouble(strShipping);
 
-        String strtotalPriceCheck = driver.findElement(locator4).getText().replaceAll("[^\\d]", "");
-        int totalPriceCheck = Integer.parseInt(strtotalPriceCheck);
 
-        assertEquals(totalPrice,totalPriceCheck);
+        double TotalPreisCheck= grayProduktPrice+blauProduktPrice+Shipping;
+        System.out.println("TotalPreisCheck = "+TotalPreisCheck);
+
+
+        String strTotalPreis= driver.findElement(totalPreis).getText().substring(1).replace(",","");
+        System.out.println("TotalPreis = "+ strTotalPreis);
+        double totalPreisSumme =Double.parseDouble(strTotalPreis);
+
+        assertEquals(totalPreisSumme,TotalPreisCheck);
 
     }
 
@@ -148,15 +147,16 @@ wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).clear();
     }
 
 
-    public static String randomString(int leng){
-       String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    public static String randomString(int leng) {
+        String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         SecureRandom rnd = new SecureRandom();
         StringBuilder sb = new StringBuilder(leng);
-        for(int i = 0; i < leng; i++)
+        for (int i = 0; i < leng; i++)
             sb.append(AB.charAt(rnd.nextInt(AB.length())));
         return sb.toString();
     }
-    public void assertActualURL(){
+
+    public void assertActualURL() {
         assertTrue(driver.getCurrentUrl().toLowerCase().contains("http://www.advantageonlineshopping.com/#/"));
     }
 

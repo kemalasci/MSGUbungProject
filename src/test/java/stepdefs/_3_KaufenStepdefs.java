@@ -23,9 +23,9 @@ public class _3_KaufenStepdefs extends BaseClass implements LocatorsInterface {
 
      Thread.sleep(1000);
 
-        clickTo(redProdukt);
+        clickTo(grayProdukt);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
             clickTo(plusButton);
         }
         Thread.sleep(1000);
